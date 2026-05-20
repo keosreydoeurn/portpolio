@@ -117,6 +117,45 @@
             line-height: 1.2;
         }
 
+        .animated-title span {
+            display: inline-block;
+        }
+
+        .animated-title .letter {
+            display: inline-block;
+            opacity: 0;
+            animation: letterType 0.04s linear forwards;
+        }
+
+        .animated-title .name {
+            color: rgb(66, 244, 197);
+        }
+
+        .animated-title::after {
+            content: '|';
+            display: inline-block;
+            margin-left: 4px;
+            animation: cursorBlink 0.8s infinite;
+        }
+
+        @keyframes letterType {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes cursorBlink {
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
+        }
+
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
@@ -136,6 +175,7 @@
             font-weight: 600;
             transition: all 0.3s;
             cursor: pointer;
+            animation: breathe 2.5s ease-in-out infinite;
         }
 
         .btn-primary {
@@ -145,34 +185,80 @@
         }
 
         .btn-primary:hover {
-            background-color: transparent;
-            color: white;
+            background-color: rgb(248, 248, 248);
+            color: rgb(8, 8, 8);
             border: 2px solid white;
         }
 
         .btn-secondary {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
+            background-color: white;
+            color: rgb(17, 17, 17);
+            border: 2px solid rgb(164, 162, 162);
         }
 
         .btn-secondary:hover {
-            background-color: white;
-            color: var(--primary);
+            background-color: rgb(255, 158, 3);
+            color: rgb(255, 255, 255);
         }
 
         .hero-image {
             flex: 1;
             text-align: center;
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .profile-img {
+            position: relative;
+            z-index: 2;
             width: 350px;
             height: 350px;
             border-radius: 50%;
             object-fit: cover;
             border: 10px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            width: 385px;
+            height: 385px;
+            border-radius: 50%;
+            border: 4px dashed rgb(66, 244, 197);
+            box-shadow:
+                0 0 18px rgba(66, 244, 197, 0.7),
+                inset 0 0 18px rgba(66, 244, 197, 0.25);
+            animation: rotateLine 3s linear infinite;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            width: 405px;
+            height: 405px;
+            border-radius: 50%;
+            border: 2px solid rgba(251, 224, 90, 0.8);
+            box-shadow: 0 0 20px rgba(251, 224, 90, 0.35);
+            z-index: 1;
+            animation: rotateLine 5s linear infinite reverse;
+        }
+
+        @keyframes rotateLine {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes breathe {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
         }
 
         /* About Section */
@@ -271,6 +357,7 @@
         .ro-image {
             flex: 1;
             text-align: center;
+            animation: breathe 2.5s ease-in-out infinite;
         }
         .img {
             width: 350px;
@@ -381,6 +468,16 @@
                 width: 280px;
                 height: 280px;
             }
+
+            .hero-image::before {
+                width: 315px;
+                height: 315px;
+            }
+
+            .hero-image::after {
+                width: 335px;
+                height: 335px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -401,6 +498,16 @@
             .profile-img {
                 width: 220px;
                 height: 220px;
+            }
+
+            .hero-image::before {
+                width: 255px;
+                height: 255px;
+            }
+
+            .hero-image::after {
+                width: 275px;
+                height: 275px;
             }
         }
    
